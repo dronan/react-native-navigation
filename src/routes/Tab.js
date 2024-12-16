@@ -3,20 +3,34 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import TelaA from '../views/TelaA';
 import TelaB from '../views/TelaB';
 import TelaC from '../views/TelaC';
-import PassoStack from '../components/PassoStack';
+import Icon from '@react-native-vector-icons/fontawesome6';
 
 const Tab = createBottomTabNavigator();
 
 export default () => (
   <Tab.Navigator
-    tabBarOptions={{
-      activeTintColor: 'red',
-      inactiveTintColor: 'blue',
-      labelStyle: {fontSize: 30},
-    }}
+    screenOptions={({route}) => ({
+      tabBarIcon: ({focused, color, size}) => {
+        let iconName;
+        switch (route.name) {
+          case 'TelaA':
+            iconName = focused ? 'comments' : 'comments';
+            break;
+          case 'TelaB':
+            iconName = focused ? 'user' : 'user';
+            break;
+          case 'TelaC':
+            iconName = focused ? 'paste' : 'paste';
+            break;
+        }
+        return <Icon name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: 'red',
+      tabBarInactiveTintColor: 'gray',
+    })}
     initialRouteName="TelaB">
-    <Tab.Screen name="TelaA" component={TelaA} />
-    <Tab.Screen name="TelaB" component={TelaB} />
-    <Tab.Screen name="TelaC" component={TelaC} />
+    <Tab.Screen name="TelaA" component={TelaA} options={{title: 'Inicial'}} />
+    <Tab.Screen name="TelaB" component={TelaB} options={{title: 'Meio'}} />
+    <Tab.Screen name="TelaC" component={TelaC} options={{title: 'Final'}} />
   </Tab.Navigator>
 );

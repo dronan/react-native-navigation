@@ -1,6 +1,7 @@
 import React from 'react';
 import TextoCentral from '../components/TextoCentral';
 import {Button, View} from 'react-native';
+import Icon from '@react-native-vector-icons/fontawesome6';
 
 export default props => {
   return (
@@ -21,7 +22,7 @@ export default props => {
       </View>
       <View style={{flex: 1}}>
         <TextoCentral corFundo="#146" style={{flex: 1}} corTexto="#CCC">
-          Tela D
+          Tela D <Icon name="comments" size={30} color="#900" />
         </TextoCentral>
       </View>
     </View>
